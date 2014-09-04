@@ -1,0 +1,7 @@
+user:
+    action: Действие
+    id: '#'
+    list: Список пользователей
+    username: Имя пользователя
+    subscribe: Читать
+    unsubscribe: Отписаться

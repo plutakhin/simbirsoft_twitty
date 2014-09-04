@@ -1,0 +1,32 @@
+{% extends 'MainBundle::base.html.twig' %}
+
+{% block content %}
+    <legend>{{ 'user.list'|trans }}</legend>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{{ 'user.id'|trans }}</th>
+                    <th>{{ 'user.username'|trans }}</th>
+                    <th>{{ 'user.action'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>
+                        {% if app.user.subscriptions.contains(user) %}
+                            <a href="#"><button class="btn btn-xs btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span> {{ 'user.unsubscribe'|trans }}</button></a>
+                        {% else %}
+                            <a href="#"><button class="btn btn-xs btn-primary" type="button"><span class="glyphicon glyphicon-link"></span> {{ 'user.subscribe'|trans }}</button></a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -45,6 +45,11 @@ class User implements UserInterface
     protected $password;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Bundle\MainBundle\Entity\User")
+     **/
+    protected $subscriptions;
+
+    /**
      * @inheritDoc
      */
     public function getSalt()
@@ -141,5 +146,45 @@ class User implements UserInterface
     public function getPassword()
     {
         return $this->password;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add subscriptions
+     *
+     * @param \Bundle\MainBundle\Entity\User $subscriptions
+     * @return User
+     */
+    public function addSubscription(\Bundle\MainBundle\Entity\User $subscriptions)
+    {
+        $this->subscriptions[] = $subscriptions;
+
+        return $this;
+    }
+
+    /**
+     * Remove subscriptions
+     *
+     * @param \Bundle\MainBundle\Entity\User $subscriptions
+     */
+    public function removeSubscription(\Bundle\MainBundle\Entity\User $subscriptions)
+    {
+        $this->subscriptions->removeElement($subscriptions);
+    }
+
+    /**
+     * Get subscriptions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSubscriptions()
+    {
+        return $this->subscriptions;
     }
 }
