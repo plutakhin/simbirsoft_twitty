@@ -14,6 +14,22 @@ body {
     margin-right: auto;
 }
 
+.board {
+    background: rgba(255, 255, 255, 0.9);
+    display: block;
+    width: 100%;
+    margin-top: 35px;
+    min-height: 800px;
+}
+
+.menu {
+    margin-top: 10px;
+}
+
+.menu button {
+    min-width: 125px;
+}
+
 .security {
     background: rgba(0, 0, 0, 0.3);
     margin-top: 200px;

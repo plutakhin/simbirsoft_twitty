@@ -33,6 +33,12 @@ class News
      **/
     protected $tags;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Bundle\MainBundle\Entity\User", fetch="EAGER")
+     * @ORM\JoinColumn(nullable=false, name="authorId", referencedColumnName="id", onDelete="CASCADE")
+     */
+    protected $author;
+
     protected $plainTags = array();
 
     /**
@@ -108,6 +114,29 @@ class News
     {
         return $this->tags;
     }
+    
+    /**
+     * Set author
+     *
+     * @param \Bundle\MainBundle\Entity\User $author
+     * @return News
+     */
+    public function setAuthor(\Bundle\MainBundle\Entity\User $author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \Bundle\MainBundle\Entity\User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 
     public function getPlainTags()
     {
@@ -117,5 +146,10 @@ class News
     public function setPlainTags($plainTags)
     {
         $this->plainTags = $plainTags;
+    }
+    
+    public function addPlainTags($plainTag)
+    {
+        $this->plainTags[] = $plainTag;
     }
 }

@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             // Third-party
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
 
             // Local
             new Bundle\MainBundle\MainBundle(),
