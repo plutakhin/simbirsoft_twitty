@@ -3,6 +3,7 @@
 namespace Bundle\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Сущность пользователь
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Bundle\MainBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer
@@ -42,6 +43,26 @@ class User
      * @ORM\Column(name="password", type="string", length=128)
      */
     protected $password;
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+    }
 
     /**
      * Get id

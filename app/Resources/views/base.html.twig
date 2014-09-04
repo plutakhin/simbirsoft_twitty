@@ -2,15 +2,21 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}IT-Place{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-        <link href="public/css/style.css" rel="stylesheet">
+        {% stylesheets filter='cssrewrite'
+            '@MainBundle/Resources/public/css/style.css'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
+        {% endstylesheets %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% include "MainBundle:Content:header.html.twig" %}
+        <div class="content">{% block body %}{% endblock %}</div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

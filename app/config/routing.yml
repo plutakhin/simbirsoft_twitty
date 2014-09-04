@@ -3,3 +3,11 @@ main:
     type:     annotation
     prefix:   /
 
+_login:
+    path: /login
+
+login_check:
+    path: /login_check
+
+_logout:
+    pattern: /logout

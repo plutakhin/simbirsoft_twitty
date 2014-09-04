@@ -1,0 +1,11 @@
+<div class="header">
+    <ul class="header-actions">
+        {% if not app.user %}
+            <li><a href="{{ path('signup') }}">Signup</a></li>
+            <li><a href="{{ path('login') }}">Login</a></li>
+        {% else %}
+            <li>Wellcome {{ app.user.username }}!</li>
+            <li><a href="{{ path('_logout') }}">Exit</a></li>
+        {% endif %}
+    </ul>
+</div>

@@ -1,0 +1,23 @@
+body {
+    background: url(/bundles/main/images/background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+}
+
+.security {
+    background: rgba(0, 0, 0, 0.3);
+    margin-top: 10%;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.security legend {
+    color: wheat;
+}
+
+.security, .login label {
+    color: white;
+}
