@@ -19,4 +19,16 @@ class BaseController extends Controller
 
         return $em->getRepository($repository);
     }
+
+    /**
+     * Перевод сообщения
+     * @param string $message
+     * @param string $domain
+     * @param array $params
+     * @return string
+     */
+    protected function getTranslate($message, $domain = null, $params = array())
+    {
+        return $this->get('translator')->trans($message, $params, $domain);
+    }
 }

@@ -5,3 +5,4 @@ user:
     username: Имя пользователя
     subscribe: Читать
     unsubscribe: Отписаться
+    notAvailable: Пользователь не доступен

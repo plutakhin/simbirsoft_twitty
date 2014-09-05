@@ -19,9 +19,9 @@
                     <td>{{ user.username }}</td>
                     <td>
                         {% if app.user.subscriptions.contains(user) %}
-                            <a href="#"><button class="btn btn-xs btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span> {{ 'user.unsubscribe'|trans }}</button></a>
+                            <a href="" class="api"><button class="btn btn-xs btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span> {{ 'user.unsubscribe'|trans }}</button></a>
                         {% else %}
-                            <a href="#"><button class="btn btn-xs btn-primary" type="button"><span class="glyphicon glyphicon-link"></span> {{ 'user.subscribe'|trans }}</button></a>
+                            <a href="{{ path('api_subscribe', { id: user.id }) }}" class="api"><button class="btn btn-xs btn-primary" type="button"><span class="glyphicon glyphicon-link"></span> {{ 'user.subscribe'|trans }}</button></a>
                         {% endif %}
                     </td>
                 </tr>
