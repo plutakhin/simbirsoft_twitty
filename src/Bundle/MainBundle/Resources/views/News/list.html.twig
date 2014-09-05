@@ -1,0 +1,23 @@
+{% extends 'MainBundle::base.html.twig' %}
+
+{% block content %}
+    <legend>{{ 'news.list'|trans }}</legend>
+
+    <div class="table-responsive news-list">
+        {% for entry in news %}
+            <div class="panel panel-default">
+                <div class="panel-heading author">{{ entry.author.username }}</div>
+                <div class="panel-body">
+                    <p>{{ entry.text }}</p>
+                </div>
+                <div class="panel-footer">
+                    <ul class="news-tags clearfix">
+                    {% for tag in entry.tags %}
+                        <li><a href="{{ path('news_list', {'tag': tag.name }) }}">#{{ tag.name }}</a></li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

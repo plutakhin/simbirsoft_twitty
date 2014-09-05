@@ -6,3 +6,6 @@ user:
     subscribe: Читать
     unsubscribe: Отписаться
     notAvailable: Пользователь не доступен
+
+news:
+    list: Лента
