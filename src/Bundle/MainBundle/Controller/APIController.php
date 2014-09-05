@@ -28,11 +28,38 @@ class APIController extends BaseController
         if ($user == $this->getUser()) {
             return $this->generateError('user.notAvailable');
         }
+        if ($this->getUser()->getSubscriptions()->contains($user)) {
+            return $this->generateError('user.alreadySubscribed');
+        }
 
-        $response = new JsonResponse();
-        $response->setData(array(
-        ));
+        $this->getUser()->addSubscription($user);
+        $this->getRepository('User')->save($this->getUser());
+
+        $response = new JsonResponse(array('action' => 'toggleClass'));
         
+        return $response;
+    }
+    /**
+     * @Route("/unsubscribe/{id}", name="api_unsubscribe")
+     * @Method("POST")
+     */
+    public function unsubscribeAction($id, Request $request)
+    {
+        if (!$user = $this->getRepository('User')->find($id)) {
+            return $this->generateError('user.notFound');
+        }
+        if ($user == $this->getUser()) {
+            return $this->generateError('user.notAvailable');
+        }
+        if (!$this->getUser()->getSubscriptions()->contains($user)) {
+            return $this->generateError('user.notSubscribed');
+        }
+
+        $this->getUser()->removeSubscription($user);
+        $this->getRepository('User')->save($this->getUser());
+
+        $response = new JsonResponse(array('action' => 'toggleClass'));
+
         return $response;
     }
 

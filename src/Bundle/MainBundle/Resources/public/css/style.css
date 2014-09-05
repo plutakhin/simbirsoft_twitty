@@ -73,3 +73,7 @@ body {
 .header-actions a:hover {
     text-decoration: none;
 }
+
+.user-list .actions button {
+    min-width: 100px;
+}

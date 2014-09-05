@@ -3,7 +3,7 @@
 {% block content %}
     <legend>{{ 'user.list'|trans }}</legend>
 
-    <div class="table-responsive">
+    <div class="table-responsive user-list">
         <table class="table">
             <thead>
                 <tr>
@@ -13,16 +13,14 @@
                 </tr>
             </thead>
             <tbody>
-                {% for user in users %}
+                {% for user in users if app.user != user %}
                 <tr>
                     <td>{{ user.id }}</td>
                     <td>{{ user.username }}</td>
-                    <td>
-                        {% if app.user.subscriptions.contains(user) %}
-                            <a href="" class="api"><button class="btn btn-xs btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span> {{ 'user.unsubscribe'|trans }}</button></a>
-                        {% else %}
-                            <a href="{{ path('api_subscribe', { id: user.id }) }}" class="api"><button class="btn btn-xs btn-primary" type="button"><span class="glyphicon glyphicon-link"></span> {{ 'user.subscribe'|trans }}</button></a>
-                        {% endif %}
+                    <td class="actions toggle-class">
+                        {% set isSub = app.user.subscriptions.contains(user) %}
+                        <a href="{{ path('api_unsubscribe', { id: user.id }) }}" class="api {{ not isSub ? 'hidden' }}"><button class="btn btn-xs btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span> {{ 'user.unsubscribe'|trans }}</button></a>
+                        <a href="{{ path('api_subscribe', { id: user.id }) }}" class="api {{ isSub ? 'hidden' }}"><button class="btn btn-xs btn-primary" type="button"><span class="glyphicon glyphicon-link"></span> {{ 'user.subscribe'|trans }}</button></a>
                     </td>
                 </tr>
                 {% endfor %}

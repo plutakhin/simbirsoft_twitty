@@ -1,3 +1,5 @@
 user:
     notFound: Пользователь не найден
     notAvailable: Пользователь не доступен
+    alreadySubscribed: Пользователь уже подписан
+    notSubscribed: Пользователь не подписан
