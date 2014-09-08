@@ -39,6 +39,7 @@ class APIController extends BaseController
         
         return $response;
     }
+
     /**
      * @Route("/unsubscribe/{id}", name="api_unsubscribe")
      * @Method("POST")
@@ -59,6 +60,20 @@ class APIController extends BaseController
         $this->getRepository('User')->save($this->getUser());
 
         $response = new JsonResponse(array('action' => 'toggleClass'));
+
+        return $response;
+    }
+
+    /**
+     * @Route("/findTag", name="api_find_tag")
+     * @Method("POST")
+     */
+    public function findTagAction(Request $request)
+    {
+        $term = $request->get('term');
+        $tags = $this->getRepository('Tag')->search($term);
+
+        $response = new JsonResponse($tags);
 
         return $response;
     }

@@ -153,6 +153,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->subscriptions[] = $this;
     }
 
     /**

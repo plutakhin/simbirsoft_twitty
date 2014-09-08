@@ -1,4 +1,11 @@
+create: Создать
+submit: Отправить
+
 signup:
     username: Логин
     email: Е-майл
     password: Пароль
+
+news:
+    text: Текст
+    plainTags: Теги

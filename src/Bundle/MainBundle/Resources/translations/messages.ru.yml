@@ -9,3 +9,8 @@ user:
 
 news:
     list: Лента
+    create: Добавить новость
+
+form:
+    create: Создать
+    submit: Отправить

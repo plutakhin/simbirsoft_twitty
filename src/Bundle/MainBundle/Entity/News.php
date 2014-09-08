@@ -2,6 +2,7 @@
 
 namespace Bundle\MainBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,7 +24,8 @@ class News
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min=5, max=255)
      * @ORM\Column(name="text", type="string", length=255, nullable=false)
      */
     protected $text;

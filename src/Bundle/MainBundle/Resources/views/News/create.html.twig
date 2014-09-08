@@ -1,0 +1,10 @@
+{% extends 'MainBundle::base.html.twig' %}
+
+{% block content %}
+    <legend>{{ 'news.create'|trans }}</legend>
+
+    <div class="news-create">
+            {% form_theme form 'MainBundle:Theme:horizontal.html.twig' %}
+            {{ form(form) }}
+    </div>
+{% endblock %}

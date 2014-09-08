@@ -92,7 +92,7 @@ class SecurityController extends BaseController
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Отправить', 'attr' => array(
+        $form->add('submit', 'submit', array('label' => 'submit', 'attr' => array(
             'class' => 'btn btn-primary btn-sm'
         )));
 

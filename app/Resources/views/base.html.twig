@@ -8,12 +8,23 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        {% javascripts '@MainBundle/Resources/public/js/*' %}
+        <script type="text/javascript">
+            var routes = {
+                api_find_tag : "{{ path('api_find_tag') }}"
+            }
+        </script>
+        {% javascripts 
+            '@MainBundle/Resources/public/js/*'
+            '@MainBundle/Resources/public/plugins/select2/select2.js'
+            '@MainBundle/Resources/public/plugins/select2/select2_locale_ru.js'
+        %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-        {% stylesheets filter='cssrewrite'
+        {% stylesheets
+            '@MainBundle/Resources/public/plugins/select2/select2.css'
+            '@MainBundle/Resources/public/plugins/select2/select2-bootstrap.css'
             '@MainBundle/Resources/public/css/style.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}"/>

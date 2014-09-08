@@ -5,6 +5,38 @@ $(document).ready(function () {
     });
 });
 
+// Init select2
+$(document).ready(function() {
+    $('.select2').select2({
+        tags: [],
+        separator: '|',
+        multiple: true,
+        minimumInputLength: 1,
+        maximumInputLength: 50,
+        ajax: {
+            url: routes.api_find_tag,
+            dataType: 'json',
+            type: "POST",
+            data: function(term, page) {
+                return {
+                    term: term,
+                    page_limit: 50,
+                };
+            },
+            results: function(data, page) {
+                return {results: data};
+            }
+        },
+        //Allow manually entered text in drop down.
+        createSearchChoice: function(term, data) {
+            if ($(data).filter(function() {
+                return this.text.localeCompare(term) === 0;
+            }).length === 0) {
+                return {id: term, text: term};
+            }
+        },
+    });
+});
 
 $(document).ready(function () {
     $('a.api').on('click', function(e) {
