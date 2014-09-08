@@ -7,7 +7,7 @@
 !app/logs/.gitkeep
 /build/
 /vendor/
-/bin/
-/composer.phar
+/bin/doctrine*
+/bin/composer.phar
 /web/js/
 /web/css/

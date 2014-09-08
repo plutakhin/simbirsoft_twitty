@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="twitty" default="build" basedir=".">
+    <property name="basedir" value="${project.basedir}"/>
+    <property name="passthru" value="true"/>
+    
+
+    <!-- Default target -->
+    <target name="build" depends="clear-cache, assets" />
+    <target name="install" depends="composer-self-update, composer, clear-cache, assets, create-db, update-db, load" />
+
+    <!-- update composer -->
+    <target name="composer-self-update">
+        <exec command="bin/composer.phar self-update" dir="${basedir}" passthru="${passthru}" />
+    </target>
+
+    <!-- run composer update -->
+    <target name="composer">
+        <exec command="php bin/composer.phar update" dir="${basedir}" passthru="${passthru}" />
+    </target>
+
+    <!-- clear cache -->
+    <target name="clear-cache">
+        <exec command="php app/console cache:clear --env=dev" dir="${basedir}" passthru="${passthru}" />
+        <exec command="php app/console cache:clear --env=prod" dir="${basedir}" passthru="${passthru}" />
+    </target>
+
+    <!-- create db -->
+    <target name="create-db">
+        <exec command="php app/console doctrine:database:create" dir="${basedir}" passthru="${passthru}" />
+    </target>
+
+
+    <!-- update db -->
+    <target name="update-db">
+        <exec command="php app/console doctrine:schema:update --force" dir="${basedir}" passthru="${passthru}" />
+    </target>
+    
+    <!-- drop db -->
+    <target name="drop-db">
+        <exec command="php app/console doctrine:schema:drop --force" dir="${basedir}" passthru="${passthru}" />
+    </target>
+
+    <!-- load fixtures -->
+    <target name="load">
+        <exec command="php app/console doctrine:fixtures:load --no-interaction" dir="${basedir}" passthru="${passthru}" />
+    </target>
+
+
+    <!-- change project's permissions -->
+    <target name="permissions">
+        <exec command="chmod -R 777 app/cache" dir="${basedir}" />
+        <exec command="chmod -R 777 app/logs" dir="${basedir}" />
+    </target>
+
+    <!-- install assets -->
+    <target name="assets">
+        <exec command="php app/console assets:install --symlink" dir="${basedir}" passthru="${passthru}" />
+        <exec command="php app/console assetic:dump --env=prod --no-debug" dir="${basedir}" passthru="${passthru}" />
+    </target>
+</project>
