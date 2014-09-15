@@ -5,6 +5,7 @@
 ## Требования
 
   * PHP 5.4+
+  * Apache (+mod rewrite)
   * MySql
   * Phing
   * Composer
@@ -13,8 +14,8 @@
 
   * Выкачать проект из репозитория
     * `git clone git@github.com:plutakhin/simbirsoft_twitty.git /var/www/twitty/`
-  * Установить Phing
-    * http://www.phing.info/trac/wiki/Users/Installation
+  * Установить Phing (http://www.phing.info/trac/wiki/Users/Installation)
+    * sudo pear install --nocompress phing/phing
   * Выкачать composer в папку bin/
     * `curl -sS https://getcomposer.org/installer | php -- --install-dir=bin`
   *   Запустить сборку проекта, на вопросы композера указать верные настройки для соединения с БД, установить язык: **locale = ru**
